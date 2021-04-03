@@ -1,6 +1,6 @@
 module github.com/dubbogo/v3router
 
-go 1.13
+go 1.15
 
 require (
 	github.com/apache/dubbo-go v1.5.5
