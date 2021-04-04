@@ -19,7 +19,6 @@ package k8sApi
 
 import (
 	"fmt"
-	"github.com/dubbogo/v3router/config"
 )
 
 import (
@@ -28,11 +27,13 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
+
+	"github.com/apache/dubbo-go/config_center"
+	"github.com/apache/dubbo-go/remoting"
 )
 
 import (
-	"github.com/apache/dubbo-go/config_center"
-	"github.com/apache/dubbo-go/remoting"
+	"github.com/dubbogo/v3router/config"
 	"github.com/dubbogo/v3router/k8sCRD"
 )
 

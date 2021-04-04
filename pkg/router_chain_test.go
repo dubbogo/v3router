@@ -19,12 +19,15 @@ package uniform
 
 import (
 	"fmt"
+	"testing"
+)
+
+import (
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/common/yaml"
 	"github.com/apache/dubbo-go/protocol"
 	"github.com/apache/dubbo-go/protocol/invocation"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 const (

@@ -18,21 +18,22 @@
 package k8sCRD
 
 import (
-	"github.com/apache/dubbo-go/common/logger"
-	"k8s.io/apimachinery/pkg/watch"
 	"sync"
 	"time"
+)
 
+import (
+	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/apimachinery/pkg/runtime"
-
 	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/tools/cache"
-
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
+
+	"github.com/apache/dubbo-go/common/logger"
 )
 
 type Client struct {

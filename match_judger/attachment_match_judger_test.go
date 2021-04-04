@@ -18,10 +18,16 @@
 package match_judger
 
 import (
+	"testing"
+)
+
+import (
 	"github.com/dubbogo/v3router/config"
+)
+
+import (
 	"github.com/apache/dubbo-go/protocol/invocation"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestAttachmentMatchJudger(t *testing.T) {

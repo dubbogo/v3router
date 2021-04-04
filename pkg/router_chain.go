@@ -20,18 +20,28 @@ package uniform
 import (
 	"encoding/json"
 	"fmt"
+	"io"
+	"strings"
+)
+
+import (
+	"gopkg.in/yaml.v2"
+
+	perrors "github.com/pkg/errors"
+
 	"github.com/apache/dubbo-go/cluster/router"
-	"github.com/dubbogo/v3router/k8sApi"
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/common/logger"
-	"github.com/dubbogo/v3router/config"
+
 	"github.com/apache/dubbo-go/config_center"
 	"github.com/apache/dubbo-go/protocol"
 	"github.com/apache/dubbo-go/remoting"
-	perrors "github.com/pkg/errors"
-	"gopkg.in/yaml.v2"
-	"io"
-	"strings"
+
+)
+
+import (
+	"github.com/dubbogo/v3router/k8sApi"
+	"github.com/dubbogo/v3router/config"
 )
 
 // RouterChain contains all uniform router logic

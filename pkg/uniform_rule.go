@@ -25,14 +25,14 @@ import (
 
 import (
 	perrors "github.com/pkg/errors"
+	"github.com/apache/dubbo-go/common"
+	"github.com/apache/dubbo-go/common/logger"
+	"github.com/apache/dubbo-go/protocol"
 )
 
 import (
 	"github.com/dubbogo/v3router/match_judger"
-	"github.com/apache/dubbo-go/common"
-	"github.com/apache/dubbo-go/common/logger"
 	"github.com/dubbogo/v3router/config"
-	"github.com/apache/dubbo-go/protocol"
 )
 
 // VirtualServiceRule is item of virtual service, it aims at judge if invocation context match it's condition, and
