@@ -19,8 +19,11 @@ package uniform
 
 import (
 	"github.com/apache/dubbo-go/common"
-	"github.com/dubbogo/v3router/config"
 	"github.com/apache/dubbo-go/protocol"
+)
+
+import (
+	"github.com/dubbogo/v3router/config"
 )
 
 type DubboRouterRule struct {

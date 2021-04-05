@@ -19,6 +19,9 @@ package k8sApi
 
 import (
 	"github.com/apache/dubbo-go/config_center"
+)
+
+import (
 	"github.com/dubbogo/v3router/k8sCRD"
 )
 

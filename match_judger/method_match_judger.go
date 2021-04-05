@@ -18,8 +18,11 @@
 package match_judger
 
 import (
-	"github.com/dubbogo/v3router/config"
 	"github.com/apache/dubbo-go/protocol"
+)
+
+import (
+	"github.com/dubbogo/v3router/config"
 )
 
 type MethodMatchJudger struct {

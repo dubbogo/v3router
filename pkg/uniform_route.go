@@ -19,9 +19,6 @@ package uniform
 
 import (
 	"github.com/apache/dubbo-go/config_center"
-)
-
-import (
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/protocol"
 )

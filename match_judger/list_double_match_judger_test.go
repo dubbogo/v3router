@@ -18,9 +18,15 @@
 package match_judger
 
 import (
-	"github.com/dubbogo/v3router/config"
-	"github.com/stretchr/testify/assert"
 	"testing"
+)
+
+import (
+	"github.com/stretchr/testify/assert"
+)
+
+import (
+	"github.com/dubbogo/v3router/config"
 )
 
 func TestListDoubleMatchJudger_Judge(t *testing.T) {
