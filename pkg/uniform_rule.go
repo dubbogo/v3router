@@ -85,7 +85,7 @@ func (vsr *VirtualServiceRule) tryGetSubsetFromRouterOfOneDestination(desc *conf
 	resultInvokers := make([]protocol.Invoker, 0)
 	if ok {
 		for _, v := range invokers {
-			if match_judger.JudgeUrlLabel(v.GetUrl(), labels) {
+			if match_judger.JudgeUrlLabel(v.GetURL(), labels) {
 				resultInvokers = append(resultInvokers, v)
 			}
 		}
@@ -94,8 +94,8 @@ func (vsr *VirtualServiceRule) tryGetSubsetFromRouterOfOneDestination(desc *conf
 		}
 	}
 
-	if desc.Fallback != nil {
-		return vsr.tryGetSubsetFromRouterOfOneDestination(desc.Fallback, invokers)
+	if desc.Destination.Fallback != nil {
+		return vsr.tryGetSubsetFromRouterOfOneDestination(desc.Destination.Fallback, invokers)
 	}
 	return nil, 0, perrors.New("No invoker matches and no fallback destination to choose!")
 }

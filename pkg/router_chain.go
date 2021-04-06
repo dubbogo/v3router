@@ -27,8 +27,6 @@ import (
 import (
 	"gopkg.in/yaml.v2"
 
-	perrors "github.com/pkg/errors"
-
 	"github.com/apache/dubbo-go/cluster/router"
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/common/logger"
@@ -36,12 +34,11 @@ import (
 	"github.com/apache/dubbo-go/config_center"
 	"github.com/apache/dubbo-go/protocol"
 	"github.com/apache/dubbo-go/remoting"
-
 )
 
 import (
-	"github.com/dubbogo/v3router/k8sApi"
 	"github.com/dubbogo/v3router/config"
+	"github.com/dubbogo/v3router/k8sApi"
 )
 
 // RouterChain contains all uniform router logic
@@ -70,7 +67,7 @@ func NewUniformRouterChain(virtualServiceConfig, destinationRuleConfig []byte, n
 	if err := k8sApi.SetK8sEventListener(r); err != nil {
 		logger.Warnf("try listen K8s router config failed, error = %+v", err)
 		if !fromFileConfig {
-			return nil, perrors.New("No config file from both local file and k8s")
+			panic("No config file from both local file and k8s")
 		}
 	}
 	return r, nil

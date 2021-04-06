@@ -119,18 +119,17 @@ type StringMatch struct {
 type DubboDestination struct {
 	Destination RouterDest `yaml:"destination" json:"destination"`
 	//Subset      string            `yaml:"subset"`
-	Fallback *DubboDestination `yaml:"fallback" json:"fallback"`
 }
 
 type RouterDest struct {
 	Host   string `yaml:"host" json:"host"`
 	Subset string `yaml:"subset" json:"subset"`
 	Weight int    `yaml:"weight" json:"weight"`
+	Fallback *DubboDestination `yaml:"fallback" json:"fallback"`
 	// todo port
 }
 
 // DestinationRule Definition
-
 type DestinationRuleConfig struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
