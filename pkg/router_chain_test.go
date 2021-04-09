@@ -135,24 +135,24 @@ func TestParseConfigFromFile(t *testing.T) {
 				assert.NotNil(t, vsRule.routerItem.Router[0].Destination)
 				assert.Equal(t, ruleTestItemStructList[i].RouterDestHost, vsRule.routerItem.Router[0].Destination.Host)
 				assert.Equal(t, ruleTestItemStructList[i].RouterDestSubset, vsRule.routerItem.Router[0].Destination.Subset)
-				if vsRule.routerItem.Router[0].Fallback == nil {
+				if vsRule.routerItem.Router[0].Destination.Fallback == nil {
 					assert.Equal(t, 1, ruleTestItemStructList[i].fallbackLevel)
 					continue
 				}
-				newRule := vsRule.routerItem.Router[0].Fallback
+				newRule := vsRule.routerItem.Router[0].Destination.Fallback
 				assert.NotNil(t, newRule.Destination)
 				assert.Equal(t, ruleTestItemStructList[i].RouterFallBackDestHost, newRule.Destination.Host)
 				assert.Equal(t, ruleTestItemStructList[i].RouterFallBackDestSubset, newRule.Destination.Subset)
-				if newRule.Fallback == nil {
+				if newRule.Destination.Fallback == nil {
 					assert.Equal(t, 2, ruleTestItemStructList[i].fallbackLevel)
 					continue
 				}
 
-				newRule = newRule.Fallback
+				newRule = newRule.Destination.Fallback
 				assert.NotNil(t, newRule.Destination)
 				assert.Equal(t, ruleTestItemStructList[i].RouterFallBackFallBackDestHost, newRule.Destination.Host)
 				assert.Equal(t, ruleTestItemStructList[i].RouterFallBackFallBackDestSubset, newRule.Destination.Subset)
-				if newRule.Fallback == nil {
+				if newRule.Destination.Fallback == nil {
 					assert.Equal(t, 3, ruleTestItemStructList[i].fallbackLevel)
 				}
 			}

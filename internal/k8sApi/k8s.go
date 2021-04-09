@@ -22,7 +22,7 @@ import (
 )
 
 import (
-	"github.com/dubbogo/v3router/k8sCRD"
+	"github.com/dubbogo/v3router/internal/k8sCRD"
 )
 
 const (

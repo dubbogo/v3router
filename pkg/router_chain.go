@@ -25,20 +25,18 @@ import (
 )
 
 import (
-	"gopkg.in/yaml.v2"
-
 	"github.com/apache/dubbo-go/cluster/router"
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/common/logger"
-
 	"github.com/apache/dubbo-go/config_center"
 	"github.com/apache/dubbo-go/protocol"
 	"github.com/apache/dubbo-go/remoting"
+	"gopkg.in/yaml.v2"
 )
 
 import (
 	"github.com/dubbogo/v3router/config"
-	"github.com/dubbogo/v3router/k8sApi"
+	"github.com/dubbogo/v3router/internal/k8sApi"
 )
 
 // RouterChain contains all uniform router logic
@@ -82,12 +80,11 @@ func (r *RouterChain) Route(invokers []protocol.Invoker, url *common.URL, invoca
 }
 
 func (r *RouterChain) Process(event *config_center.ConfigChangeEvent) {
-	fmt.Printf("on processed event = %+v\n", *event)
+	logger.Debugf("on processed event = %+v\n", *event)
 	if event.ConfigType == remoting.EventTypeAdd || event.ConfigType == remoting.EventTypeUpdate {
-		fmt.Println("event type add or update ")
 		switch event.Key {
 		case k8sApi.VirtualServiceEventKey:
-			fmt.Println("virtul service event key")
+			logger.Debug("virtul service event")
 			newVSValue, ok := event.Value.(*config.VirtualServiceConfig)
 			if !ok {
 				logger.Error("event.Value assertion error")
@@ -99,7 +96,7 @@ func (r *RouterChain) Process(event *config_center.ConfigChangeEvent) {
 				logger.Error("newVSValue.ObjectMeta.Annotations has no key named kubectl.kubernetes.io/last-applied-configuration")
 				return
 			}
-			fmt.Println("json file = ", newVSJsonValue)
+			logger.Debugf("json file = %v\n", newVSJsonValue)
 			newVirtualServiceConfig := &config.VirtualServiceConfig{}
 			if err := json.Unmarshal([]byte(newVSJsonValue), newVirtualServiceConfig); err != nil {
 				logger.Error("on process json data unmarshal error = ", err)
@@ -120,7 +117,7 @@ func (r *RouterChain) Process(event *config_center.ConfigChangeEvent) {
 				return
 			}
 		case k8sApi.DestinationRuleEventKey:
-			fmt.Println("dest rule event key")
+			logger.Debug("handling dest rule event")
 			newDRValue, ok := event.Value.(*config.DestinationRuleConfig)
 			if !ok {
 				logger.Error("event.Value assertion error")

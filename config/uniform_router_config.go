@@ -28,7 +28,6 @@ type MetaDataStruct struct {
 }
 
 // VirtualService Config Definition
-
 type VirtualServiceConfig struct {
 	YamlAPIVersion    string `yaml:"apiVersion"`
 	YamlKind          string `yaml:"kind"`
@@ -44,7 +43,7 @@ type UniformRouterConfigSpec struct {
 }
 
 type DubboRoute struct {
-	Services     []*StringMatch            `yaml:"service" json:"service"`
+	Services     []*StringMatch            `yaml:"services" json:"service"`
 	RouterDetail []*DubboServiceRouterItem `yaml:"routedetail" json:"routedetail"`
 }
 
@@ -122,9 +121,9 @@ type DubboDestination struct {
 }
 
 type RouterDest struct {
-	Host   string `yaml:"host" json:"host"`
-	Subset string `yaml:"subset" json:"subset"`
-	Weight int    `yaml:"weight" json:"weight"`
+	Host     string            `yaml:"host" json:"host"`
+	Subset   string            `yaml:"subset" json:"subset"`
+	Weight   int               `yaml:"weight" json:"weight"`
 	Fallback *DubboDestination `yaml:"fallback" json:"fallback"`
 	// todo port
 }
