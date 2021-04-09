@@ -6,7 +6,7 @@ spec:
   hosts:
     - demo  # app name
   dubbo:
-    - service:
+    - services:
         - exact: com.taobao.hsf.demoService:1.0.0
         - exact: com.taobao.hsf.demoService:2.0.0
       routedetail:
@@ -21,14 +21,14 @@ spec:
             - destination:
                 host: demo
                 subset: v1
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v3
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v3
 
         - name: sayHello-method-route
           match:
@@ -39,10 +39,10 @@ spec:
             - destination:
                 host: demo
                 subset: v2
-              fallback:
-                destination:
-                  host: demo
-                  subset: v3
+                fallback:
+                  destination:
+                    host: demo
+                    subset: v3
         - name: some-method-route
           match:
             - method:
@@ -52,12 +52,6 @@ spec:
             - destination:
                 host: demo
                 subset: v4
-
-#        - name: interface-route
-#          route:
-#            - destination:
-#              host: demo
-#              subset: v3
         - name: final
           match:
             - method:
@@ -68,26 +62,26 @@ spec:
             - destination:
                 host: demo
                 subset: v1
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v3
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v3
             - destination:
                 host: demo
                 subset: v3
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v1
-    - service:
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v1
+    - services:
         - exact: com.taobao.hsf.demoService:1.0.0
         - exact: org.apache.dubbo.UserProvider
       routedetail:
@@ -102,14 +96,14 @@ spec:
             - destination:
                 host: demo
                 subset: v1
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v3
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v3
 
         - name: sayHello-method-route
           match:
@@ -120,10 +114,10 @@ spec:
             - destination:
                 host: demo
                 subset: v2
-              fallback:
-                destination:
-                  host: demo
-                  subset: v3
+                fallback:
+                  destination:
+                    host: demo
+                    subset: v3
         - name: some-method-route
           match:
             - method:
@@ -133,12 +127,6 @@ spec:
             - destination:
                 host: demo
                 subset: v4
-
-        #        - name: interface-route
-        #          route:
-        #            - destination:
-        #              host: demo
-        #              subset: v3
         - name: final
           match:
             - method:
@@ -149,22 +137,22 @@ spec:
             - destination:
                 host: demo
                 subset: v1
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v3
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v3
             - destination:
                 host: demo
                 subset: v3
-              fallback:
-                destination:
-                  host: demo
-                  subset: v2
                 fallback:
                   destination:
                     host: demo
-                    subset: v1
+                    subset: v2
+                    fallback:
+                      destination:
+                        host: demo
+                        subset: v1

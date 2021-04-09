@@ -23,17 +23,16 @@ import (
 )
 
 import (
-	"k8s.io/apimachinery/pkg/watch"
-	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/apimachinery/pkg/util/wait"
-	"k8s.io/client-go/tools/cache"
+	"github.com/apache/dubbo-go/common/logger"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
+	"k8s.io/apimachinery/pkg/util/wait"
+	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
-
-	"github.com/apache/dubbo-go/common/logger"
+	"k8s.io/client-go/tools/cache"
 )
 
 type Client struct {
@@ -56,7 +55,6 @@ func (c *Client) addKnownTypes(scheme *runtime.Scheme) error {
 	return nil
 }
 
-// NewK8sCRDClient can only called in k8s cluster
 // NewK8sCRDClient create an K8sCRD client, for target  CRD objects:  @objects
 // with given @groupname, @groupVersion, @namespace
 // list and watchFunction would be called by k8s informer
@@ -66,7 +64,7 @@ func NewK8sCRDClient(groupName, groupVersion, namespace string, handlers ...List
 
 	config, err = rest.InClusterConfig()
 	if err != nil {
-		logger.Error("InClusterConfig failed, can't get uniform router config from k8s")
+		logger.Warn("InClusterConfig failed, can't get uniform router config from k8s")
 		return nil, err
 	}
 

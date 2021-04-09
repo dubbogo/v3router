@@ -18,21 +18,20 @@
 package uniform
 
 import (
-	"fmt"
 	"math/rand"
 	"time"
 )
 
 import (
-	perrors "github.com/pkg/errors"
 	"github.com/apache/dubbo-go/common"
 	"github.com/apache/dubbo-go/common/logger"
 	"github.com/apache/dubbo-go/protocol"
+	perrors "github.com/pkg/errors"
 )
 
 import (
-	"github.com/dubbogo/v3router/match_judger"
 	"github.com/dubbogo/v3router/config"
+	"github.com/dubbogo/v3router/internal/match_judger"
 )
 
 // VirtualServiceRule is item of virtual service, it aims at judge if invocation context match it's condition, and
@@ -48,7 +47,6 @@ type VirtualServiceRule struct {
 // match read from vsr's Match config
 // it judges if this invocation matches the router rule request defined in config one by one
 func (vsr *VirtualServiceRule) match(url *common.URL, invocation protocol.Invocation) bool {
-	fmt.Println(url, invocation)
 	for _, v := range vsr.routerItem.Match {
 		// method match judge
 		if v.Method != nil {
@@ -59,7 +57,9 @@ func (vsr *VirtualServiceRule) match(url *common.URL, invocation protocol.Invoca
 		}
 
 		// source label match judge
-		// todo
+		if !match_judger.JudgeUrlLabel(url, v.SourceLabels) {
+			return false
+		}
 
 		// atta match judge
 		if v.Attachment != nil {

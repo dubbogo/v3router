@@ -18,8 +18,8 @@
 package uniform
 
 import (
-	"github.com/apache/dubbo-go/config_center"
 	"github.com/apache/dubbo-go/common"
+	"github.com/apache/dubbo-go/config_center"
 	"github.com/apache/dubbo-go/protocol"
 )
 
