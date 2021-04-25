@@ -26,10 +26,12 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type StringMatchJudger struct {
 	config.StringMatch
 }
 
+// nolint
 func (smj *StringMatchJudger) Judge(input string) bool {
 	if smj.Exact != "" {
 		return input == smj.Exact
@@ -50,6 +52,7 @@ func (smj *StringMatchJudger) Judge(input string) bool {
 	return true
 }
 
+// nolint
 func NewStringMatchJudger(matchConf *config.StringMatch) *StringMatchJudger {
 	return &StringMatchJudger{
 		StringMatch: *matchConf,

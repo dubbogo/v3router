@@ -21,10 +21,12 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type DoubleMatchJudger struct {
 	config.DoubleMatch
 }
 
+// nolint
 func (dmj *DoubleMatchJudger) Judge(input float64) bool {
 	if dmj.Exact != 0 {
 		return input == dmj.Exact
@@ -39,6 +41,7 @@ func (dmj *DoubleMatchJudger) Judge(input float64) bool {
 	return true
 }
 
+// nolint
 func newDoubleMatchJudger(matchConf *config.DoubleMatch) *DoubleMatchJudger {
 	return &DoubleMatchJudger{
 		DoubleMatch: *matchConf,

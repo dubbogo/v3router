@@ -24,6 +24,7 @@ import (
 	"k8s.io/client-go/rest"
 )
 
+// nolint
 type ListenerHandler interface {
 	AddFunc(obj interface{})
 	UpdateFunc(oldObj interface{}, newObj interface{})

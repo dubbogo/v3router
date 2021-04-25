@@ -29,6 +29,7 @@ type AttachmentMatchJudger struct {
 	config.DubboAttachmentMatch
 }
 
+// nolint
 func (amj *AttachmentMatchJudger) Judge(invocation protocol.Invocation) bool {
 	invAttaMap := invocation.Attachments()
 	if amj.EagleeyeContext != nil {
@@ -74,6 +75,7 @@ func (amj *AttachmentMatchJudger) Judge(invocation protocol.Invocation) bool {
 	return true
 }
 
+// nolint
 func NewAttachmentMatchJudger(matchConf *config.DubboAttachmentMatch) *AttachmentMatchJudger {
 	return &AttachmentMatchJudger{
 		DubboAttachmentMatch: *matchConf,

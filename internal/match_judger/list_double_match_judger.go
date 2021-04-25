@@ -21,10 +21,12 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type ListDoubleMatchJudger struct {
 	config.ListDoubleMatch
 }
 
+// nolint
 func (lsmj *ListDoubleMatchJudger) Judge(input float64) bool {
 	for _, v := range lsmj.Oneof {
 		if newDoubleMatchJudger(v).Judge(input) {
@@ -34,6 +36,7 @@ func (lsmj *ListDoubleMatchJudger) Judge(input float64) bool {
 	return false
 }
 
+// nolint
 func newListDoubleMatchJudger(matchConf *config.ListDoubleMatch) *ListDoubleMatchJudger {
 	return &ListDoubleMatchJudger{
 		ListDoubleMatch: *matchConf,

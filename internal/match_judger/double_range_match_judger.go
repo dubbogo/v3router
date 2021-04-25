@@ -21,14 +21,17 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type DoubleRangeMatchJudger struct {
 	config.DoubleRangeMatch
 }
 
+// nolint
 func (drmj *DoubleRangeMatchJudger) Judge(input float64) bool {
 	return input >= drmj.Start && input < drmj.End
 }
 
+// nolint
 func newDoubleRangeMatchJudger(matchConf *config.DoubleRangeMatch) *DoubleRangeMatchJudger {
 	return &DoubleRangeMatchJudger{
 		DoubleRangeMatch: *matchConf,

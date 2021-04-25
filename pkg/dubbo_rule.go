@@ -26,6 +26,7 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type DubboRouterRule struct {
 	uniformRules []*UniformRule
 }

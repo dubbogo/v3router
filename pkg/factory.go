@@ -22,8 +22,7 @@ import (
 )
 
 // UniformRouteFactory is uniform router's factory
-type UniformRouteFactory struct {
-}
+type UniformRouteFactory struct{}
 
 // NewUniformRouterFactory construct a new PriorityRouterFactory
 func NewUniformRouterFactory() router.PriorityRouterFactory {

@@ -36,18 +36,22 @@ import (
 	"github.com/dubbogo/v3router/internal/k8sCRD"
 )
 
-const VirtualServiceEventKey = "virtualServiceEventKey"
-const DestinationRuleEventKey = "destinationRuleEventKe3y"
+const (
+	VirtualServiceEventKey  = "virtualServiceEventKey"
+	DestinationRuleEventKey = "destinationRuleEventKe3y"
 
-const VirtualServiceResource = "virtualservices"
-const DestRuleResource = "destinationrules"
+	VirtualServiceResource = "virtualservices"
+	DestRuleResource       = "destinationrules"
+)
 
+// nolint
 type VirtualServiceListenerHandler struct {
 	listener config_center.ConfigurationListener
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) AddFunc(obj interface{}) {
-	fmt.Println("addFunc")
+	//fmt.Println("addFunc")
 	if vsc, ok := obj.(*config.VirtualServiceConfig); ok {
 		fmt.Printf("in add func: get asserted VirtualServiceConfig = %+v\n", *vsc)
 		event := &config_center.ConfigChangeEvent{
@@ -59,8 +63,9 @@ func (r *VirtualServiceListenerHandler) AddFunc(obj interface{}) {
 	}
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) UpdateFunc(oldObj, newObj interface{}) {
-	fmt.Println("update func = ")
+	//fmt.Println("update func = ")
 	if vsc, ok := newObj.(*config.VirtualServiceConfig); ok {
 		event := &config_center.ConfigChangeEvent{
 			Key:        VirtualServiceEventKey,
@@ -72,6 +77,7 @@ func (r *VirtualServiceListenerHandler) UpdateFunc(oldObj, newObj interface{}) {
 
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) DeleteFunc(obj interface{}) {
 	if vsc, ok := obj.(*config.VirtualServiceConfig); ok {
 		event := &config_center.ConfigChangeEvent{
@@ -81,11 +87,10 @@ func (r *VirtualServiceListenerHandler) DeleteFunc(obj interface{}) {
 		}
 		r.listener.Process(event)
 	}
-
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) Watch(opts metav.ListOptions, restClient *rest.RESTClient, ns string) (watch.Interface, error) {
-	fmt.Println("Call Watch")
 	opts.Watch = true
 	return restClient.
 		Get().
@@ -95,8 +100,8 @@ func (r *VirtualServiceListenerHandler) Watch(opts metav.ListOptions, restClient
 		Watch()
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) List(opts metav.ListOptions, restClient *rest.RESTClient, ns string) (runtime.Object, error) {
-	fmt.Println("Call List")
 	result := config.VirtualServiceConfigList{}
 	err := restClient.
 		Get().
@@ -109,22 +114,25 @@ func (r *VirtualServiceListenerHandler) List(opts metav.ListOptions, restClient 
 	return &result, err
 }
 
+// nolint
 func (r *VirtualServiceListenerHandler) GetObject() runtime.Object {
 	return &config.VirtualServiceConfig{}
 }
 
+// nolint
 func newVirtualServiceListenerHandler(listener config_center.ConfigurationListener) k8sCRD.ListenerHandler {
 	return &VirtualServiceListenerHandler{
 		listener: listener,
 	}
 }
 
+// nolint
 type DestRuleListenerHandler struct {
 	listener config_center.ConfigurationListener
 }
 
+// nolint
 func (r *DestRuleListenerHandler) AddFunc(obj interface{}) {
-	fmt.Println("dest rule addFunc")
 	if drc, ok := obj.(*config.DestinationRuleConfig); ok {
 		event := &config_center.ConfigChangeEvent{
 			Key:        DestinationRuleEventKey,
@@ -136,8 +144,8 @@ func (r *DestRuleListenerHandler) AddFunc(obj interface{}) {
 
 }
 
+// nolint
 func (r *DestRuleListenerHandler) UpdateFunc(oldObj, newObj interface{}) {
-	fmt.Println("dest rule update func = ")
 	if drc, ok := newObj.(*config.DestinationRuleConfig); ok {
 		event := &config_center.ConfigChangeEvent{
 			Key:        DestinationRuleEventKey,
@@ -148,6 +156,7 @@ func (r *DestRuleListenerHandler) UpdateFunc(oldObj, newObj interface{}) {
 	}
 }
 
+// nolint
 func (r *DestRuleListenerHandler) DeleteFunc(obj interface{}) {
 	if drc, ok := obj.(*config.DestinationRuleConfig); ok {
 		event := &config_center.ConfigChangeEvent{
@@ -159,8 +168,9 @@ func (r *DestRuleListenerHandler) DeleteFunc(obj interface{}) {
 	}
 }
 
+// nolint
 func (r *DestRuleListenerHandler) Watch(opts metav.ListOptions, restClient *rest.RESTClient, ns string) (watch.Interface, error) {
-	fmt.Println("dest rule Call Watch")
+	//fmt.Println("dest rule Call Watch")
 	opts.Watch = true
 	return restClient.
 		Get().
@@ -170,8 +180,9 @@ func (r *DestRuleListenerHandler) Watch(opts metav.ListOptions, restClient *rest
 		Watch()
 }
 
+// nolint
 func (r *DestRuleListenerHandler) List(opts metav.ListOptions, restClient *rest.RESTClient, ns string) (runtime.Object, error) {
-	fmt.Println("Call List")
+	//fmt.Println("Call List")
 	result := config.DestinationRuleConfigList{}
 	err := restClient.
 		Get().
@@ -184,6 +195,7 @@ func (r *DestRuleListenerHandler) List(opts metav.ListOptions, restClient *rest.
 	return &result, err
 }
 
+// nolint
 func (r *DestRuleListenerHandler) GetObject() runtime.Object {
 	return &config.DestinationRuleConfig{}
 }

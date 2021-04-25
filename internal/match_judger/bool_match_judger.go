@@ -19,14 +19,17 @@ package match_judger
 
 import "github.com/dubbogo/v3router/config"
 
+// nolint
 type BoolMatchJudger struct {
 	config.BoolMatch
 }
 
+// nolint
 func (lsmj *BoolMatchJudger) Judge(input bool) bool {
 	return input == lsmj.Exact
 }
 
+// nolint
 func newBoolMatchJudger(matchConf *config.BoolMatch) *BoolMatchJudger {
 	return &BoolMatchJudger{
 		BoolMatch: *matchConf,

@@ -25,6 +25,7 @@ import (
 	"github.com/dubbogo/v3router/config"
 )
 
+// nolint
 type MethodMatchJudger struct {
 	config.DubboMethodMatch
 }
@@ -83,6 +84,7 @@ func (mmj *MethodMatchJudger) Judge(invocation protocol.Invocation) bool {
 	return true
 }
 
+// nolint
 func NewMethodMatchJudger(matchConf *config.DubboMethodMatch) *MethodMatchJudger {
 	return &MethodMatchJudger{
 		DubboMethodMatch: *matchConf,
